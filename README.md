@@ -1,1 +1,3 @@
-# SDK-Y
+# GanadaPlus
+
+JavaScript to TypeScript Renewal

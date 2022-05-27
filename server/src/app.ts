@@ -1,9 +1,8 @@
-import express from "express";
-import cors from "cors";
 const app = express();
+import express from "express";
 const dotenv = require("dotenv");
 dotenv.config();
-// const port = process.env.PORT;
+import cors from "cors";
 import { sequelize } from "../models";
 
 app.use(cors());
@@ -14,6 +13,10 @@ const port: number = parseInt(process.env.PORT as string, 10);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+// 기존 10줄 이상의 routes 코드를 2줄로 변경
+const routes = require("./routes/index");
+app.use("/", routes);
 
 app.listen(port, async () => {
   console.log(`Express is listening at http://localhost:${port}`);

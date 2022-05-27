@@ -18,15 +18,18 @@ const dotenv = require("dotenv");
 dotenv.config();
 const cors_1 = __importDefault(require("cors"));
 const models_1 = require("../models");
-app.use((0, cors_1.default)());
+const corsOptions = {
+    origin: "*",
+    method: ["post", "get"],
+};
+app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 const port = parseInt(process.env.PORT, 10);
+const authRouter = require("../routes/auth");
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
-// 기존 10줄 이상의 routes 코드를 2줄로 변경
-const routes = require("./routes/index");
-app.use("/", routes);
+app.use("/auth", authRouter);
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`Express is listening at http://localhost:${port}`);
     yield models_1.sequelize

@@ -1,5 +1,5 @@
 const authController = require("../controller/auth");
-const router = express.Router();
-router.get("/signup", authController.signup);
+const router = require("express").Router();
+router.get("/signup", authController.signUp);
 module.exports = router;
 //# sourceMappingURL=auth.js.map

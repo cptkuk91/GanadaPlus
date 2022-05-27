@@ -1,3 +1,9 @@
+import { Request, Response } from "express";
+import * as express from "express";
+const router = express.Router();
+
 module.exports = {
-  signup: async (req: Request, res: Response) => {},
+  signUp: async (req: Request, res: Response) => {
+    return res.end();
+  },
 };

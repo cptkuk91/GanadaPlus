@@ -5,18 +5,22 @@ dotenv.config();
 import cors from "cors";
 import { sequelize } from "../models";
 
-app.use(cors());
+const corsOptions = {
+  origin: "*",
+  method: ["post", "get"],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const port: number = parseInt(process.env.PORT as string, 10);
 
+const authRouter = require("../routes/auth");
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-
-// 기존 10줄 이상의 routes 코드를 2줄로 변경
-const routes = require("./routes/index");
-app.use("/", routes);
+app.use("/auth", authRouter);
 
 app.listen(port, async () => {
   console.log(`Express is listening at http://localhost:${port}`);

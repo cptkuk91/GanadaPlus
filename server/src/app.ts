@@ -1,9 +1,10 @@
-const app = express();
 import express from "express";
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
 import { sequelize } from "../models";
+import controllers from "../controllers";
+const app = express();
 
 const corsOptions = {
   origin: "*",
@@ -15,12 +16,10 @@ app.use(express.json());
 
 const port: number = parseInt(process.env.PORT as string, 10);
 
-const authRouter = require("../routes/auth");
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.use("/auth", authRouter);
+app.get("/signup", controllers.signup);
 
 app.listen(port, async () => {
   console.log(`Express is listening at http://localhost:${port}`);
@@ -30,7 +29,7 @@ app.listen(port, async () => {
     .then(async () => {
       console.log("connection Success");
     })
-    .catch((e) => {
+    .catch((e: Error) => {
       console.log("TT : ", e);
     });
 });

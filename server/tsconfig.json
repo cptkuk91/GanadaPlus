@@ -3,8 +3,14 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "target": "es6",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "typeRoots" : ["./@types", "./node_modules/@types"],
     "outDir": "dist"
   },
   "lib": ["es2015"]

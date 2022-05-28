@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
 import { sequelize } from "../models";
-import controllers from "../controllers";
+import { controllers } from "../../controllers";
 const app = express();
 
 const corsOptions = {

@@ -1,11 +1,17 @@
-const app = express();
 import express from "express";
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
 import { sequelize } from "../models";
+import { controllers } from "../controllers";
+const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: "*",
+  method: ["post", "get"],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const port: number = parseInt(process.env.PORT as string, 10);
@@ -13,10 +19,7 @@ const port: number = parseInt(process.env.PORT as string, 10);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-
-// 기존 10줄 이상의 routes 코드를 2줄로 변경
-const routes = require("./routes/index");
-app.use("/", routes);
+app.get("/signup", controllers.signup);
 
 app.listen(port, async () => {
   console.log(`Express is listening at http://localhost:${port}`);
@@ -26,7 +29,7 @@ app.listen(port, async () => {
     .then(async () => {
       console.log("connection Success");
     })
-    .catch((e) => {
+    .catch((e: Error) => {
       console.log("TT : ", e);
     });
 });

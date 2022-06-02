@@ -52,4 +52,3 @@ exports.config = {
         dialect: "mysql",
     },
 };
-//# sourceMappingURL=config.js.map

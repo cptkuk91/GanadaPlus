@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -16,5 +14,8 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": ["src"], 
+  //exclude 옵션을 아예 설정하지 않는다면 node_modules는 애초에 컴파일 대상에서 제외 됨.
+  //만약, exclude 옵션을 다른 파일 때문에 사용해야 한다면, 그때는 node_modules도 추가해야 함. -김세현
+  "exclude": ["node_modules"],
 }
